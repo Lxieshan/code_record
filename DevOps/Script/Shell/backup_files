@@ -1,1 +1,21 @@
+#!/bin/bash
 
+# 要备份的源目录
+source_dir="/路径/到/源目录"
+
+# 备份目录
+backup_dir="/路径/到/备份目录"
+
+# 创建备份文件夹的时间戳
+timestamp=$(date +"%Y%m%d%H%M%S")
+backup_folder="$backup_dir/备份_$timestamp"
+
+# 使用rsync命令进行备份
+rsync -avz "$source_dir" "$backup_folder"
+
+# 检查rsync命令是否成功执行
+if [ $? -eq 0 ]; then
+    echo "备份成功。"
+else
+    echo "备份失败。"
+fi
